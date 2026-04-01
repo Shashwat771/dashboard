@@ -1,0 +1,396 @@
+/* ═══════════════════════════════════════════════════════
+   ADVANCED KPI CARDS — 8 Variants
+   Based on Dashboard Blueprint Specifications
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Big Number Card ── */
+.kpi-big-number {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-big-number::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--kpi-color);
+}
+
+.kpi-big-number .kpi-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--kpi-color);
+}
+
+.kpi-big-number .kpi-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.kpi-big-number .kpi-big-value {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--kpi-color);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.kpi-big-number .kpi-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ── Trend Card ── */
+.kpi-trend {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kpi-trend .kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.kpi-trend .kpi-trend-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--kpi-color);
+  margin-bottom: 8px;
+}
+
+.kpi-trend .kpi-trend-change {
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+}
+
+.kpi-trend .kpi-trend-change.positive {
+  color: #22c55e;
+}
+
+.kpi-trend .kpi-trend-change.negative {
+  color: #ef4444;
+}
+
+/* ── Progress Card ── */
+.kpi-progress {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.kpi-progress .kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.kpi-progress .kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpi-progress .kpi-percent {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--kpi-color);
+}
+
+.kpi-progress .kpi-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.kpi-progress .kpi-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--kpi-color), rgba(99, 102, 241, 0.6));
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.kpi-progress .kpi-meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ── Gauge Card ── */
+.kpi-gauge {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.kpi-gauge .kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+.kpi-gauge-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2.5 / 1.5;
+  margin-bottom: 12px;
+}
+
+.kpi-gauge-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.1));
+}
+
+.kpi-gauge-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-gauge-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ── Badge Card ── */
+.kpi-badge {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.kpi-badge .kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.kpi-badge-pill {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--kpi-color), rgba(99, 102, 241, 0.7));
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.kpi-badge .kpi-badge-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--kpi-color);
+}
+
+/* ── Comparison Card ── */
+.kpi-comparison {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.kpi-comparison .kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.kpi-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.kpi-comp-section {
+  border-left: 3px solid;
+  padding-left: 14px;
+  text-align: left;
+}
+
+.kpi-comp-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.kpi-comp-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.kpi-comparison-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Sparkline Card ── */
+.kpi-sparkline {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.kpi-sparkline .kpi-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.kpi-sparkline .kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.kpi-sparkline .kpi-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--kpi-color);
+}
+
+.kpi-sparkline-chart {
+  width: 100%;
+  height: 40px;
+  opacity: 0.8;
+}
+
+/* ── Icon Stat Card ── */
+.kpi-icon-stat {
+  background: linear-gradient(135deg, var(--bg-card), rgba(99, 102, 241, 0.05));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.kpi-icon-wrapper {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.kpi-icon-stat .kpi-info {
+  flex: 1;
+}
+
+.kpi-icon-stat .kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.kpi-icon-stat .kpi-stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--kpi-color);
+}
+
+.kpi-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .kpi-big-number,
+  .kpi-trend,
+  .kpi-progress,
+  .kpi-gauge,
+  .kpi-badge,
+  .kpi-comparison,
+  .kpi-sparkline,
+  .kpi-icon-stat {
+    padding: 16px;
+  }
+
+  .kpi-big-number .kpi-big-value,
+  .kpi-trend .kpi-trend-value {
+    font-size: 2rem;
+  }
+
+  .kpi-gauge-value {
+    font-size: 1.4rem;
+  }
+
+  .kpi-comp-value {
+    font-size: 1.3rem;
+  }
+}

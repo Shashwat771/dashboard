@@ -1,0 +1,297 @@
+/* ═══════════════════════════════════════════════════════
+   RANKING TABLE — Full width with sparklines
+   Based on Dashboard Blueprint Specifications
+   ═══════════════════════════════════════════════════════ */
+
+.ranking-table-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ranking-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, var(--bg-elevated), var(--bg-card));
+}
+
+.ranking-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ranking-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Table Styling ── */
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ranking-table thead {
+  background: rgba(99, 102, 241, 0.05);
+  border-bottom: 2px solid var(--border);
+}
+
+.ranking-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.ranking-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.2s ease;
+}
+
+.ranking-table tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.08);
+}
+
+.ranking-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.ranking-table td {
+  padding: 16px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+/* ── Rank Column ── */
+.rank-col {
+  width: 60px;
+  text-align: center;
+  padding: 14px 12px;
+}
+
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.rank-badge.rank-1 {
+  background: linear-gradient(135deg, #ffd60a, #ffb703);
+  color: #0a0f2c;
+  box-shadow: 0 2px 8px rgba(255, 214, 10, 0.3);
+}
+
+.rank-badge.rank-2 {
+  background: linear-gradient(135deg, #c1c1c1, #999999);
+  color: white;
+}
+
+.rank-badge.rank-3 {
+  background: linear-gradient(135deg, #cd7f32, #b76e15);
+  color: white;
+}
+
+.rank-badge {
+  background: rgba(99, 102, 241, 0.2);
+  color: #6366f1;
+}
+
+/* ── Name Column ── */
+.name-col {
+  width: 40%;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Value Column ── */
+.value-col {
+  width: 120px;
+  text-align: right;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.value-text {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ── Sparkline Column ── */
+.sparkline-col {
+  width: 140px;
+  text-align: center;
+  padding: 12px 16px;
+}
+
+.ranking-sparkline {
+  width: 100%;
+  height: 40px;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.15));
+}
+
+/* ── Badge Column ── */
+.badge-col {
+  width: 100px;
+  text-align: center;
+}
+
+.item-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1.5px solid;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   MINI RANKING — Sidebar version
+   ═══════════════════════════════════════════════════════ */
+
+.mini-ranking {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mini-ranking-header {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.mini-ranking-header h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.mini-ranking-list {
+  padding: 12px;
+}
+
+.mini-ranking-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.mini-ranking-item:hover {
+  background-color: rgba(99, 102, 241, 0.08);
+}
+
+.mini-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #6366f1;
+  flex-shrink: 0;
+}
+
+.mini-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.mini-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+/* ─────────────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .ranking-table th,
+  .ranking-table td {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  .name-col {
+    width: 35%;
+  }
+
+  .sparkline-col {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .ranking-table {
+    font-size: 0.8rem;
+  }
+
+  .ranking-table th,
+  .ranking-table td {
+    padding: 10px 12px;
+  }
+
+  .rank-col {
+    padding: 10px 8px;
+    width: 50px;
+  }
+
+  .rank-badge {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+
+  .name-col {
+    width: 45%;
+    font-size: 0.8rem;
+  }
+
+  .value-col {
+    width: 80px;
+    font-size: 0.85rem;
+  }
+
+  .value-text {
+    font-size: 0.9rem;
+  }
+
+  .badge-col,
+  .sparkline-col {
+    display: none;
+  }
+}

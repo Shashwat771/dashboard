@@ -1,0 +1,427 @@
+/* ─── Design System: Vercel-Observability Dark Theme ─── */
+:root {
+  /* Brand */
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-light: rgba(99, 102, 241, 0.12);
+
+  /* Accents */
+  --accent: #22c55e;
+  --accent-orange: #f97316;
+  --accent-cyan: #06b6d4;
+
+  /* Surfaces — subtle layering like Vercel dark UI */
+  --bg-dark: #0a0a0e;
+  --bg-card: #0f0f14;
+  --bg-card-hover: #141419;
+  --bg-elevated: #16161e;
+  --bg-card-rgb: 15, 15, 20;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --border-active: rgba(99, 102, 241, 0.45);
+
+  /* Text */
+  --text-primary: #edeff2;
+  --text-secondary: #8b95a5;
+  --text-muted: #545f6e;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 32px rgba(99, 102, 241, 0.18);
+
+  /* Subtle ambient gradient colours */
+  --gradient-start: rgba(99, 102, 241, 0.12);
+  --gradient-end: rgba(6, 182, 212, 0.06);
+
+  /* Radius */
+  --radius-sm: 7px;
+  --radius-md: 11px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  /* Transitions */
+  --transition-fast: 0.13s ease;
+  --transition-normal: 0.22s ease;
+  --transition-slow: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Safe areas (notch-aware) */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+/* Responsive font scaling */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-card);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Touch-friendly focus for mobile */
+@media (hover: none) and (pointer: coarse) {
+  :focus-visible {
+    outline-offset: 4px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Utility Classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(17, 17, 24, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth Theme Transitions */
+.app-container,
+.app-container *:not(svg):not(path) {
+  transition: 
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Mobile-friendly button reset */
+button {
+  touch-action: manipulation;
+}
+
+/* Prevent zoom on input focus on iOS */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Hide elements on specific screen sizes */
+.hide-mobile {
+  display: block;
+}
+
+.hide-desktop {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .hide-desktop {
+    display: block !important;
+  }
+}
+
+/* Container with responsive padding */
+.responsive-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+}
+
+@media (max-width: 1024px) {
+  .responsive-container {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-container {
+    padding: var(--space-sm);
+  }
+}
+
+/* Responsive grid system */
+.grid-responsive {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.grid-responsive.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-responsive.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-responsive.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .grid-responsive.cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-responsive.cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-responsive.cols-2,
+  .grid-responsive.cols-3,
+  .grid-responsive.cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Safe padding for notched devices */
+.safe-padding {
+  padding-left: max(var(--space-md), var(--safe-area-left));
+  padding-right: max(var(--space-md), var(--safe-area-right));
+}
+
+/* Prevent body scroll when modal/sidebar is open */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Ultra-small screen optimizations (320px and below) */
+@media (max-width: 320px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+
+  body {
+    line-height: 1.5;
+  }
+
+  #root {
+    font-size: 12px;
+  }
+
+  /* Tighter responsive container */
+  .responsive-container {
+    padding: var(--space-xs);
+  }
+
+  /* More aggressive grid collapse */
+  .grid-responsive {
+    gap: var(--space-xs);
+  }
+
+  .grid-responsive.cols-2,
+  .grid-responsive.cols-3,
+  .grid-responsive.cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Maximum width optimization for ultra-large screens */
+@media (min-width: 2560px) {
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    line-height: 1.7;
+  }
+
+  .responsive-container {
+    max-width: 1800px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}

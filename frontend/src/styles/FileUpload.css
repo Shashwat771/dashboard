@@ -1,0 +1,660 @@
+/* ════════════════════════════════════════════════════════
+   FILE UPLOAD PAGE — Premium responsive design
+   ════════════════════════════════════════════════════════ */
+
+.fu-page {
+  min-height: calc(100vh - 60px);
+  min-height: calc(100dvh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  background: var(--bg-dark);
+}
+
+/* Two-column hero layout */
+.fu-hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  width: 100%;
+  max-width: 1040px;
+  align-items: start;
+}
+
+/* ── Upload card ────────────────────────────────────── */
+.fu-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: slideUp 0.45s ease forwards;
+}
+
+.fu-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fu-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: var(--primary-light);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  width: fit-content;
+}
+
+.fu-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.fu-subtitle {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.fu-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Drop zone ──────────────────────────────────────── */
+.fu-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 36px 24px;
+  background: var(--bg-elevated);
+  border: 1.5px dashed var(--border-hover);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: center;
+  min-height: 160px;
+}
+
+.fu-drop:hover,
+.fu-drop.dragging {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+.fu-drop.dragging {
+  transform: scale(1.01);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.fu-drop.has-file {
+  border-style: solid;
+  border-color: var(--accent);
+  background: rgba(34, 197, 94, 0.06);
+}
+
+.fu-drop-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition-normal);
+}
+
+.fu-drop:hover .fu-drop-icon,
+.fu-drop.dragging .fu-drop-icon {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.fu-drop.has-file .fu-drop-icon {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.fu-drop-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.fu-drop-primary {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.fu-drop-or {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.fu-drop-formats {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  padding: 4px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.fu-file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+}
+
+.fu-file-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent);
+  word-break: break-all;
+  text-align: center;
+}
+
+.fu-file-size {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+}
+
+.fu-file-change {
+  font-size: 0.7rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ── Form field ─────────────────────────────────────── */
+.fu-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fu-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fu-optional {
+  padding: 2px 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.fu-textarea {
+  padding: 12px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color var(--transition-fast);
+  font-family: inherit;
+  width: 100%;
+}
+
+.fu-textarea::placeholder { color: var(--text-muted); }
+
+.fu-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--bg-card);
+}
+
+.fu-textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Error ──────────────────────────────────────────── */
+.fu-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: #f87171;
+}
+
+/* ── Submit button ──────────────────────────────────── */
+.fu-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: var(--primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  letter-spacing: 0.02em;
+  min-height: 48px;
+}
+
+.fu-submit:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+}
+
+.fu-submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.fu-loading-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fu-spinner {
+  animation: fu-spin 0.9s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes fu-spin { to { transform: rotate(360deg); } }
+
+/* ── Progress steps ─────────────────────────────────── */
+.fu-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 14px 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.fu-step {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.fu-step.done  { color: var(--accent); }
+.fu-step.active { color: var(--primary); }
+
+.fu-step-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fu-step.done .fu-step-dot {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.fu-step.active .fu-step-dot {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.fu-step-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: fu-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes fu-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(0.7); }
+}
+
+/* ── Features panel ─────────────────────────────────── */
+.fu-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: slideUp 0.5s 0.1s ease both;
+}
+
+.fu-features-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0;
+}
+
+.fu-features-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fu-feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.fu-feature-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-elevated);
+}
+
+.fu-feature-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--primary-light);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.fu-feature-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 3px 0;
+}
+
+.fu-feature-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════ */
+
+/* Tablet: Hide features panel on tablet and smaller */
+@media (max-width: 900px) {
+  .fu-hero {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+  }
+
+  .fu-features { display: none; }
+}
+
+/* Mobile: 320px to 600px - Ensure everything fits */
+@media (max-width: 600px) {
+  .fu-page {
+    padding: 16px 12px;
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .fu-card {
+    padding: 24px 20px;
+    gap: 20px;
+    border-radius: var(--radius-md);
+  }
+
+  .fu-title { font-size: 1.45rem; }
+  .fu-subtitle { font-size: 0.82rem; }
+
+  .fu-drop { padding: 28px 16px; min-height: 140px; }
+  .fu-drop-icon { width: 50px; height: 50px; }
+
+  .fu-steps {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .fu-card { padding: 18px 14px; }
+  .fu-title { font-size: 1.25rem; }
+}
+
+/* Ultra-small phones (320px and below) */
+@media (max-width: 320px) {
+  .fu-page {
+    padding: 16px 12px;
+    min-height: calc(100vh - 44px);
+  }
+
+  .fu-hero {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+  }
+
+  .fu-card {
+    padding: 16px 12px;
+    gap: 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .fu-badge {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+
+  .fu-title {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  .fu-subtitle {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .fu-drop {
+    padding: 20px 12px;
+    min-height: 120px;
+    gap: 10px;
+  }
+
+  .fu-drop-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .fu-drop-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .fu-drop-primary {
+    font-size: 0.8rem;
+  }
+
+  .fu-drop-or {
+    font-size: 0.7rem;
+  }
+
+  .fu-drop-formats {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+
+  .fu-file-name {
+    font-size: 0.8rem;
+    word-break: break-word;
+  }
+
+  .fu-file-size {
+    font-size: 0.65rem;
+  }
+
+  .fu-file-change {
+    font-size: 0.65rem;
+  }
+
+  .fu-label {
+    font-size: 0.7rem;
+    gap: 6px;
+  }
+
+  .fu-optional {
+    font-size: 0.55rem;
+    padding: 2px 6px;
+  }
+
+  .fu-textarea {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+    min-height: 80px;
+  }
+
+  .fu-error {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+
+  .fu-error svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .fu-submit {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    min-height: 44px;
+    gap: 8px;
+  }
+
+  .fu-submit svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .fu-spinner {
+    width: 16px;
+    height: 16px;
+  }
+
+  .fu-steps {
+    flex-direction: column;
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .fu-step {
+    font-size: 0.65rem;
+    gap: 5px;
+  }
+
+  .fu-step-dot {
+    width: 18px;
+    height: 18px;
+  }
+
+  .fu-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: slideUp 0.5s 0.1s ease both;
+    margin-bottom: 20px;
+  }
+
+  .fu-features-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.6px;
+  }
+
+  .fu-feature-card {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .fu-feature-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .fu-feature-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .fu-feature-title {
+    font-size: 0.75rem;
+  }
+
+  .fu-feature-desc {
+    font-size: 0.7rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .fu-submit:hover:not(:disabled) { transform: none; box-shadow: none; }
+  .fu-feature-card:hover { border-color: var(--border); background: var(--bg-card); }
+  .fu-drop { min-height: 150px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fu-card, .fu-features { animation: none; }
+  .fu-spinner { animation: none; }
+  .fu-step-pulse { animation: none; }
+}
