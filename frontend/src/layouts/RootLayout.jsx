@@ -1,22 +1,38 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from '../context/ThemeContext';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import { dashboardRoutes } from '../routes';
 import '../layouts/RootLayout.css';
 
-export default function RootLayout() {
+/**
+ * RootLayout Component
+ * Main application layout with persistent header, navigation sidebar, and content area
+ * Provides theme context and responsive sidebar collapse for mobile devices
+ */
+function RootLayoutContent() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   
   const isHomePage = location.pathname === '/';
   const currentDashboard = dashboardRoutes.find(r => r.path === location.pathname);
 
+  // Auto-collapse sidebar on mobile
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <ThemeProvider>
-      <div className="root-layout">
-        {/* ── Global Header ── */}
-        <header className="layout-header" role="banner">
+    <div className="root-layout">
+      {/* ── Global Header ── */}
+      <header className="layout-header" role="banner">
           <div className="layout-header-inner">
             <button 
               className="sidebar-toggle"
@@ -89,9 +105,19 @@ export default function RootLayout() {
           {/* ── Main Content ── */}
           <main className="layout-main" id="main-content">
             <Outlet />
-          </main>
-        </div>
+        </main>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Wrapped component with ThemeProvider context
+ */
+export default function RootLayout() {
+  return (
+    <ThemeProvider>
+      <RootLayoutContent />
     </ThemeProvider>
   );
 }

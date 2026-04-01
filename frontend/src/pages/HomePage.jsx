@@ -4,6 +4,10 @@ import { dashboardRoutes } from '../routes';
 import './HomePage.css';
 import { useState } from 'react';
 
+/**
+ * HomePage
+ * Landing page showcasing dashboard templates and enabling data upload
+ */
 export default function HomePage() {
   const [showUpload, setShowUpload] = useState(false);
   const [dashboardData, setDashboardData] = useState(null);
@@ -11,6 +15,10 @@ export default function HomePage() {
   const handleDashboardGenerated = (data) => {
     setDashboardData(data);
     setShowUpload(false);
+  };
+
+  const handleBackClick = () => {
+    setDashboardData(null);
   };
 
   if (dashboardData) {
@@ -21,12 +29,16 @@ export default function HomePage() {
             <h2>Generated Dashboard</h2>
             <button 
               className="back-btn"
-              onClick={() => setDashboardData(null)}
+              onClick={handleBackClick}
+              aria-label="Back to templates"
             >
               ← Back to Templates
             </button>
           </div>
-          <FileUpload onDashboardGenerated={handleDashboardGenerated} initialData={dashboardData} />
+          <FileUpload 
+            onDashboardGenerated={handleDashboardGenerated} 
+            initialData={dashboardData} 
+          />
         </div>
       </div>
     );
