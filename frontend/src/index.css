@@ -9,6 +9,9 @@
   --accent: #22c55e;
   --accent-orange: #f97316;
   --accent-cyan: #06b6d4;
+  --accent-pink: #ec4899;
+  --accent-yellow: #eab308;
+  --accent-mint: #10b981;
 
   /* Surfaces — subtle layering like Vercel dark UI */
   --bg-dark: #0a0a0e;
@@ -27,11 +30,15 @@
   --text-secondary: #8b95a5;
   --text-muted: #545f6e;
 
-  /* Shadows */
+  /* Shadows - Enhanced shadow system */
   --shadow-sm: 0 1px 6px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 4px 18px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.7);
   --shadow-glow: 0 0 32px rgba(99, 102, 241, 0.18);
+  --shadow-cyan-glow: 0 0 24px rgba(6, 182, 212, 0.25);
+  --shadow-green-glow: 0 0 24px rgba(34, 197, 94, 0.2);
+  --shadow-orange-glow: 0 0 24px rgba(249, 115, 22, 0.2);
 
   /* Subtle ambient gradient colours */
   --gradient-start: rgba(99, 102, 241, 0.12);
@@ -55,6 +62,25 @@
   --space-lg: 24px;
   --space-xl: 32px;
   --space-2xl: 48px;
+
+  /* Typography Scale */
+  --font-display: 2.5rem;
+  --font-h1: 2rem;
+  --font-h2: 1.5rem;
+  --font-h3: 1.25rem;
+  --font-body-lg: 1.125rem;
+  --font-body-md: 1rem;
+  --font-body-sm: 0.9rem;
+  --font-label: 0.875rem;
+  --font-caption: 0.75rem;
+  --font-mono: 0.8rem;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
 
   /* Safe areas (notch-aware) */
   --safe-area-top: env(safe-area-inset-top, 0px);

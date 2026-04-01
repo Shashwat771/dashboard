@@ -182,6 +182,108 @@ export const DataRow = ({
   </div>
 );
 
+// ────────────────────────────────────────────────────���
+// GRID LAYOUT - Responsive Grid
+// ─────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────
+// PROGRESS CARD - Shows progress with gauge
+// ─────────────────────────────────────────────────────
+export const ProgressCard = ({ 
+  label, 
+  value, 
+  max = 100, 
+  color = 'var(--primary)',
+  showPercentage = true 
+}) => {
+  const percentage = (value / max) * 100;
+  
+  return (
+    <div className="metric-card" style={{ '--accent-color': color }}>
+      <div className="mc-label">{label}</div>
+      <div className="mc-value">{value}</div>
+      <div style={{ 
+        height: '6px', 
+        borderRadius: '3px',
+        background: 'rgba(255, 255, 255, 0.1)',
+        overflow: 'hidden',
+        marginBottom: '8px'
+      }}>
+        <div style={{
+          height: '100%',
+          width: `${percentage}%`,
+          background: color,
+          transition: 'width 0.3s ease',
+          borderRadius: '3px'
+        }}></div>
+      </div>
+      {showPercentage && <div className="mc-subtitle">{percentage.toFixed(0)}% complete</div>}
+    </div>
+  );
+};
+
+// ─────────────────────────────────────────────────────
+// COMPARISON CARD - Compare two values
+// ─────────────────────────────────────────────────────
+export const ComparisonCard = ({ 
+  label, 
+  current, 
+  previous, 
+  color = 'var(--primary)' 
+}) => {
+  const change = ((current - previous) / previous) * 100;
+  const isPositive = change >= 0;
+  
+  return (
+    <div className="metric-card" style={{ '--accent-color': color }}>
+      <div className="mc-label">{label}</div>
+      <div className="mc-value">{current}</div>
+      <div style={{ marginBottom: '8px' }}>
+        <span className={`mc-change ${isPositive ? 'positive' : 'negative'}`}>
+          {isPositive ? '↑' : '↓'} {Math.abs(change).toFixed(1)}% vs {previous}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+// ─────────────────────────────────────────────────────
+// ICON STAT CARD - Icon with stat
+// ─────────────────────────────────────────────────────
+export const IconStatCard = ({ 
+  label, 
+  value, 
+  icon, 
+  color = 'var(--primary)',
+  change = null 
+}) => {
+  const isPositive = change >= 0;
+  
+  return (
+    <div className="metric-card" style={{ '--accent-color': color }}>
+      <div style={{ 
+        width: '40px', 
+        height: '40px', 
+        borderRadius: '8px',
+        background: `${color}20`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '1.5rem',
+        marginBottom: '12px'
+      }}>
+        {icon}
+      </div>
+      <div className="mc-label">{label}</div>
+      <div className="mc-value">{value}</div>
+      {change !== null && (
+        <div className={`mc-change ${isPositive ? 'positive' : 'negative'}`}>
+          {isPositive ? '↑' : '↓'} {Math.abs(change)}%
+        </div>
+      )}
+    </div>
+  );
+};
+
 // ─────────────────────────────────────────────────────
 // GRID LAYOUT - Responsive Grid
 // ─────────────────────────────────────────────────────
@@ -214,4 +316,7 @@ export default {
   Section,
   DataRow,
   ResponsiveGrid,
+  ProgressCard,
+  ComparisonCard,
+  IconStatCard,
 };

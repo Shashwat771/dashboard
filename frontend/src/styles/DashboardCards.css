@@ -29,10 +29,12 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 24px;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .metric-card::before {
@@ -40,21 +42,34 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 3px;
+  width: 4px;
   height: 100%;
-  background: var(--accent-color, var(--primary));
+  background: linear-gradient(180deg, var(--accent-color, var(--primary)), transparent);
   transition: width var(--transition-fast);
+  border-radius: 4px 0 0 4px;
+}
+
+.metric-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
 }
 
 .metric-card:hover {
   border-color: var(--accent-color, var(--primary));
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.2);
 }
 
-.metric-card:hover::before {
-  width: 100%;
-  opacity: 0.05;
+.metric-card:hover::after {
+  opacity: 1;
 }
 
 .mc-header {
@@ -78,10 +93,11 @@
 
 .mc-value {
   color: var(--text-primary);
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.1;
   margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
 .mc-subtitle {
@@ -125,7 +141,8 @@
 
 .stat-box:hover {
   border-color: var(--primary);
-  transform: translateX(4px);
+  transform: translateX(6px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.12);
 }
 
 .sb-icon {
@@ -175,7 +192,8 @@
 
 .chart-card:hover {
   border-color: var(--primary);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
 }
 
 .cc-loader {
@@ -482,7 +500,10 @@
 }
 
 .data-row:hover {
-  background: rgba(99, 102, 241, 0.05);
+  background: rgba(99, 102, 241, 0.08);
+  border-left: 3px solid var(--primary);
+  padding-left: 9px;
+  transition: all var(--transition-fast);
 }
 
 .data-row.highlight {
