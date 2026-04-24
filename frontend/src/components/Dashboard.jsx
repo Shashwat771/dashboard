@@ -11,9 +11,7 @@ import {
   AnalyticsFocusTemplate,
   PerformanceMetricsTemplate,
   MinimalCleanTemplate,
-  GlassmorphismTemplate,
 } from './DashboardTemplates';
-import AdvancedFeaturesShowcase from './AdvancedFeaturesShowcase';
 import '../styles/Dashboard.css';
 import '../styles/DashboardTemplates.css';
 import '../styles/AdvancedKPICards.css';
@@ -781,12 +779,6 @@ const TEMPLATES = [
     desc: 'Minimalist, focused design',
     component: MinimalCleanTemplate,
   },
-  {
-    id: 'glass',
-    name: '🔮 Glassmorphism',
-    desc: 'Modern glass effect premium design',
-    component: GlassmorphismTemplate,
-  },
 ];
 
 // ─── Main Dashboard ───────────────────────────────────────────────────────────
@@ -1017,40 +1009,6 @@ export default function Dashboard({ dashboardData, onBackClick }) {
           </div>
         </header>
 
-        {/* ── TEMPLATE SELECTOR ── */}
-        <div className="template-selector-bar" role="group" aria-label="Dashboard templates">
-          <div className="template-selector-container">
-            <div style={{fontSize: '14px', fontWeight: 'bold', color: '#6366f1', marginRight: '16px'}}>
-              📊 5 PREMIUM TEMPLATES:
-            </div>
-            <div className="template-buttons">
-              {TEMPLATES.map((tmpl) => (
-                <button
-                  key={tmpl.id}
-                  className={`template-btn ${selectedTemplate === tmpl.id ? 'active' : ''}`}
-                  onClick={() => setSelectedTemplate(selectedTemplate === tmpl.id ? null : tmpl.id)}
-                  title={tmpl.desc}
-                  aria-pressed={selectedTemplate === tmpl.id}
-                >
-                  {tmpl.name}
-                </button>
-              ))}
-            </div>
-            {selectedTemplate && (
-              <button
-                className="template-close-btn"
-                onClick={() => setSelectedTemplate(null)}
-                aria-label="Close template"
-                style={{marginLeft: '12px'}}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-          </div>
-        </div>
-
         {/* Active filter chips bar */}
         {(filterChips.length > 0 || sortActive) && (
           <div className="filter-chips-bar" role="group" aria-label="Active filters">
@@ -1095,8 +1053,6 @@ export default function Dashboard({ dashboardData, onBackClick }) {
         <nav className="db-tabs" aria-label="Dashboard sections">
           {[
             { id: 'dashboard', label: 'Overview' },
-            { id: 'eda', label: 'EDA Report' },
-            { id: 'advanced', label: '🎨 Advanced Features' },
           ].map((t) => (
             <button
               key={t.id}
@@ -1157,18 +1113,35 @@ export default function Dashboard({ dashboardData, onBackClick }) {
             )}
 
             {insights && (
-              <section className="db-section" id="section-insights">
-                <h2 className="section-heading">AI Insights</h2>
-                <div className="insights-card">
-                  <div className="insights-icon" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" />
-                    </svg>
+              <section className="db-section ai-insights-premium" id="section-insights">
+                <div className="ai-insights-header">
+                  <div className="ai-insights-title-group">
+                    <div className="ai-badge">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" /><path d="M12 6v6m3-3H9" />
+                      </svg>
+                      <span>AI-POWERED</span>
+                    </div>
+                    <h2 className="section-heading">Smart Data Insights</h2>
                   </div>
-                  <div className="insights-body">
-                    {(Array.isArray(insights) ? insights : String(insights).split('\n'))
-                      .filter(Boolean)
-                      .map((line, i) => <p key={i}>{line}</p>)}
+                </div>
+                <div className="insights-card-premium">
+                  <div className="insights-content">
+                    <div className="insights-icon-large" aria-hidden="true">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" />
+                      </svg>
+                    </div>
+                    <div className="insights-body-premium">
+                      {(Array.isArray(insights) ? insights : String(insights).split('\n'))
+                        .filter(Boolean)
+                        .map((line, i) => (
+                          <div key={i} className="insight-point">
+                            <span className="insight-bullet">•</span>
+                            <p>{line}</p>
+                          </div>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </section>
@@ -1220,19 +1193,7 @@ export default function Dashboard({ dashboardData, onBackClick }) {
           </div>
         )}
 
-        {/* ── EDA TAB ── */}
-        {!selectedTemplate && activeTab === 'eda' && (
-          <div className="db-content">
-            <EdaPanel edaResult={edaResult} />
-          </div>
-        )}
 
-        {/* ── ADVANCED FEATURES TAB ── */}
-        {!selectedTemplate && activeTab === 'advanced' && (
-          <div className="db-content">
-            <AdvancedFeaturesShowcase data={filteredData} fileInfo={fileInfo} />
-          </div>
-        )}
       </div>
 
       {/* ── MOBILE BOTTOM NAV ── */}
