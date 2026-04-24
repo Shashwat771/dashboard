@@ -4,6 +4,7 @@ const { execFile } = require('child_process');
 const { parseCSV, parseExcel, parseJSON, analyzeData } = require('../services/parseData');
 const { generateDashboardConfig, generateInsights: generateBasicInsights } = require('../services/gemini');
 const { generateInsightsReport, processNLQuery: processQuery, generateChartFromQuery: generateChart } = require('../services/aiQuery');
+const EnhancedInsightsService = require('../services/enhancedInsights');
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -97,6 +98,9 @@ const uploadAndGenerateDashboard = async (req, res) => {
     let dashboardConfig;
     let insights;
 
+    // Generate enhanced insights using statistical analysis
+    const enhancedInsights = EnhancedInsightsService.generateInsights(data, {});
+    
     if (edaResult) {
       // Use EDA output directly — charts and metrics are pre-computed
       dashboardConfig = {
@@ -111,6 +115,9 @@ const uploadAndGenerateDashboard = async (req, res) => {
       dashboardConfig = await generateDashboardConfig(data, columns, analysis, prompt);
       insights = await generateInsightsReport(data, columns, analysis, []);
     }
+    
+    // Attach enhanced insights to the response
+    const enhancedInsightsData = enhancedInsights;
 
     // ── Step 5: Cleanup ────────────────────────────────────────────────
     fs.unlinkSync(filePath);
@@ -127,6 +134,7 @@ const uploadAndGenerateDashboard = async (req, res) => {
       columns,
       dashboardConfig,
       insights,
+      enhancedInsights: enhancedInsightsData,
       // Send EDA enriched data so frontend has real stats
       edaResult: edaResult || null,
       data: data.slice(0, 200),   // first 200 rows for charts/table

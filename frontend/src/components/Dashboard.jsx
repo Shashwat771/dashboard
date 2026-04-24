@@ -6,6 +6,7 @@ import {
 } from 'chart.js';
 import { Bar, Line, Pie, Scatter, Doughnut } from 'react-chartjs-2';
 import DataTable from './DataTable';
+import EnhancedInsights from './EnhancedInsights';
 import {
   ExecutiveSummaryTemplate,
   AnalyticsFocusTemplate,
@@ -17,6 +18,7 @@ import '../styles/DashboardTemplates.css';
 import '../styles/AdvancedKPICards.css';
 import '../styles/RankingTable.css';
 import '../styles/AdvancedShowcase.css';
+import '../styles/EnhancedInsights.css';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -1148,6 +1150,10 @@ export default function Dashboard({ dashboardData, onBackClick }) {
                   </div>
                 </div>
               </section>
+            )}
+
+            {dashboardData?.enhancedInsights && (
+              <EnhancedInsights insights={dashboardData.enhancedInsights} />
             )}
 
             {nonTable.length > 0 && (
