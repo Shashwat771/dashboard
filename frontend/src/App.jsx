@@ -1,12 +1,20 @@
 import { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import FileUpload from './components/FileUpload';
 import Dashboard from './components/Dashboard';
 import ThemeSwitcher from './components/ThemeSwitcher';
+import LandingPage from './components/LandingPage';
 import './App.css';
 
 function AppContent() {
   const [dashboardData, setDashboardData] = useState(null);
+  const { isAuthenticated, user, logout } = useAuth();
+
+  // Show landing page if not authenticated
+  if (!isAuthenticated) {
+    return <LandingPage />;
+  }
 
   return (
     <div className="app-root">
@@ -39,7 +47,22 @@ function AppContent() {
             )}
           </nav>
 
-          <ThemeSwitcher />
+          <div className="app-header-actions">
+            <ThemeSwitcher />
+            <div className="user-menu">
+              <div className="user-info">
+                <div className="user-avatar">{user?.name?.charAt(0).toUpperCase()}</div>
+                <span className="user-name">{user?.name}</span>
+              </div>
+              <button className="logout-btn" onClick={logout} title="Sign out">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <polyline points="16 17 21 12 16 7" />
+                  <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -57,8 +80,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
