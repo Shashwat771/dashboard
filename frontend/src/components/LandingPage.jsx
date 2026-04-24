@@ -257,63 +257,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="pricing-section">
-        <div className="section-container">
-          <div className="section-header">
-            <h2 className="section-title">Simple, Transparent Pricing</h2>
-            <p className="section-subtitle">Choose the plan that fits your needs</p>
-          </div>
-
-          <div className="pricing-grid">
-            {[
-              {
-                name: 'Starter',
-                price: '$29',
-                description: 'Perfect for individuals',
-                features: ['Up to 5 dashboards', 'Real-time updates', 'Basic analytics', 'Email support']
-              },
-              {
-                name: 'Professional',
-                price: '$99',
-                description: 'For growing teams',
-                features: ['Unlimited dashboards', 'AI insights', 'Advanced analytics', 'Priority support', 'Custom integrations'],
-                popular: true
-              },
-              {
-                name: 'Enterprise',
-                price: 'Custom',
-                description: 'For large organizations',
-                features: ['Everything in Pro', 'Dedicated support', 'SLA guarantee', 'On-premise option', 'Advanced security']
-              }
-            ].map((plan, index) => (
-              <div key={index} className={`pricing-card ${plan.popular ? 'popular' : ''}`}>
-                {plan.popular && <div className="popular-badge">Most Popular</div>}
-                <h3 className="pricing-name">{plan.name}</h3>
-                <p className="pricing-description">{plan.description}</p>
-                <div className="pricing-price">
-                  <span className="price-value">{plan.price}</span>
-                  {plan.price !== 'Custom' && <span className="price-period">/month</span>}
-                </div>
-                <button className={`pricing-btn ${plan.popular ? 'primary' : 'secondary'}`}>
-                  Get Started
-                </button>
-                <div className="pricing-features">
-                  {plan.features.map((feature, i) => (
-                    <div key={i} className="pricing-feature">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="cta-section">
         <div className="cta-container">
@@ -340,7 +283,6 @@ const LandingPage = () => {
               <h4 className="footer-heading">Product</h4>
               <ul className="footer-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#blog">Blog</a></li>
               </ul>
             </div>

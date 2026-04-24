@@ -1134,13 +1134,16 @@ export default function Dashboard({ dashboardData, onBackClick }) {
                     </div>
                     <div className="insights-body-premium">
                       {(Array.isArray(insights) ? insights : String(insights).split('\n'))
-                        .filter(Boolean)
-                        .map((line, i) => (
-                          <div key={i} className="insight-point">
-                            <span className="insight-bullet">•</span>
-                            <p>{line}</p>
-                          </div>
-                        ))}
+                        .filter(line => line && line.trim())
+                        .map((line, i) => {
+                          const cleanLine = String(line).trim().replace(/^[-•*]\s*/, '');
+                          return (
+                            <div key={i} className="insight-point">
+                              <span className="insight-bullet">◆</span>
+                              <p>{cleanLine}</p>
+                            </div>
+                          );
+                        })}
                     </div>
                   </div>
                 </div>
